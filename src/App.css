@@ -1,40 +1,83 @@
 @import '~antd/dist/antd.css';
 
+:root {
+  --text-color-black: #111111;
+  --text-color-white: #f9f9f9;
+  --primary-color: #138585;
+  --secundary-color: #b2f1e8;
+  --background-color: #141414;
+  --up-color: #3f8600;
+  --down-color: #cf1322;
+
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  min-height: 98vh;
   font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: var(--text-color-white);
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.card-quote {
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 12% 3% 3% 3%;
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card {
+  height: 18em;
+  width: 25em;
+  margin-top: 5%;
+  text-align: center;
+  border-radius: .8em;
+}
+
+.card:hover {
+  width: 26em;
+  height: 19em;
+  cursor: auto;
+}
+
+a {
+  color: var(--primary-color)
+}
+
+a:hover {
+  color: var(--primary-color)
+}
+
+.price {
+  font-size: calc(12px + 2vmin);
+  font-weight: bold;
+}
+
+.ant-card-actions {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #1c8f8f40;
+  border-radius: 0 0 .8em .8em;
+}
+
+.ant-card-head-title {
+  color: #605959;
+}
+
+.ant-layout-header {
+  background: var(--text-color-white);
+  color: var(--primary-color);
+  font-weight: bold;
+  height: 2.8em;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding-top: .3em;
+}
+
+.anticon.anticon-dollar-circle {
+  color: var(--primary-color);
+  font-size: calc(15px * 2);
+  margin-right: .5em;
 }

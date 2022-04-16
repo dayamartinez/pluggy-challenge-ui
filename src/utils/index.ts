@@ -14,3 +14,9 @@ export const getExpandedList = (
   });
   return list;
 };
+
+export const searchTitle = (source: string) => {
+  if (source.includes("ambito")) return "Ámbito";
+  if (source.includes("dolarhoy")) return "DolarHoy";
+  return "El Cronista";
+};

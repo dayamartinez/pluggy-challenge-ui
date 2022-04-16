@@ -3,6 +3,7 @@ import { LinkOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 import BadgeSlippage from "./BadgeSlippage";
+import { searchTitle } from "../utils";
 
 const { Meta } = Card;
 
@@ -16,11 +17,6 @@ interface Props {
   updatedAt?: string;
 }
 
-const searchTitle = (source: string) => {
-  if (source.includes("ambito")) return "Ámbito";
-  if (source.includes("dolarhoy")) return "DolarHoy";
-  return "El Cronista";
-};
 const CardPrimary = ({
   buyPrice,
   sellPrice,
@@ -38,15 +34,9 @@ const CardPrimary = ({
       hoverable
       key={key}
       extra={
-        // <Tooltip
-        //   placement="bottom"
-        //   title={source}
-        //   color={"var(--primary-color)"}
-        // >
         <a href={source} target="blank">
           <LinkOutlined />
         </a>
-        // </Tooltip>
       }
     >
       <Row justify="space-around">

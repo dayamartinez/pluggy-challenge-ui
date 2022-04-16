@@ -22,3 +22,9 @@ export interface Extended {
   _id: string;
   _updatedAt?: string;
 }
+
+export interface Average {
+  average_buy_price: number;
+  average_sell_price: number;
+  _id: string;
+}

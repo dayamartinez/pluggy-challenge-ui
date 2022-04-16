@@ -4,31 +4,25 @@ import { DollarCircleOutlined } from "@ant-design/icons";
 
 import Page from "./page";
 import "./App.css";
+import LoadingComponent from "./components/Loading";
 
 const { Footer, Header } = Layout;
 function App() {
-  const {
-    data: splippageList,
-    // error: errorSlippage,
-  } = useSWR(
-    "/slippage"
-    // { refreshInterval: 15000 }
-  );
+  const { data: splippageList, error: errorSlippage } = useSWR("/slippage");
+  const { data: averageItem, error: errorAverage } = useSWR("/average");
+  const { data: quotesList, error: errorQuotes } = useSWR("/quotes");
 
-  // const {
-  //   data: averageItem,
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // } = useSWR(
-  //   "/average" // { refreshInterval: 15000 }
-  // );
-
-  const {
-    data: quotesList,
-    // error: errorQuotes,
-  } = useSWR(
-    "/quotes"
-    // { refreshInterval: 15000 }
-  );
+  const handlingError = () => {
+    if (errorQuotes || errorSlippage || errorAverage) {
+      return (
+        errorQuotes?.message ||
+        errorSlippage?.message ||
+        errorAverage?.message ||
+        "Lo sentimos, se produjo un error desconocido. Por favor intente más tarde."
+      );
+    }
+    return false;
+  };
 
   return (
     <Layout className="App">
@@ -37,13 +31,23 @@ function App() {
         DÓLAR BLUE
       </Header>
       <Layout>
-        <Page
-          key="1"
-          quotesList={quotesList?.result}
-          splippageList={splippageList?.result}
-        />
+        {handlingError() ? (
+          <LoadingComponent tip={handlingError()} spin={false} error={true} />
+        ) : !quotesList && !splippageList && !averageItem ? (
+          <LoadingComponent tip="Cargando..." spin={true} />
+        ) : (
+          <Page
+            key="1"
+            quotesList={quotesList?.result}
+            splippageList={splippageList?.result}
+            averageItem={averageItem?.result}
+          />
+        )}
       </Layout>
-      <Footer style={{ textAlign: "center" }}>DJ ©2022</Footer>
+      <Footer className="footer">
+        Dayamartinez ©2022
+        <p>Pluggy Challenge</p>
+      </Footer>
     </Layout>
   );
 }

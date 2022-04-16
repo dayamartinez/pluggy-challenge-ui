@@ -12,6 +12,7 @@ root.render(
     <SWRConfig
       value={{
         fetcher,
+        refreshInterval: 15000,
         onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
           if (error.status === 404) return; // Never retry on 404.
           if (retryCount >= 10) return; // Only retry up to 10 times.
